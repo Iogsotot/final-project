@@ -1,6 +1,5 @@
 other
 package-lock.json
-pokehunt/package-lock.json
 .DS_Store
 .idea
 # Logs
@@ -110,4 +109,3 @@ dist
 
 #WebStorm files
 .idea/
-
