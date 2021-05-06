@@ -1,15 +1,15 @@
 import { FC } from 'react';
-// import Promo from '../Promo';
-// import AppDescription from '../AppDescription';
-// import PokemonsList from '../PokemonsList';
+import Promo from '../Promo';
+import AppDescription from '../AppDescription';
+import PokemonsList from '../PokemonsList';
 
 const MainPage: FC = () => {
   const any = 1;
   return (
     <main>
-      {/* <Promo />
+      <Promo />
       <AppDescription />
-      <PokemonsList /> */}
+      <PokemonsList />
     </main>
   );
 };
