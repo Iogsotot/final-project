@@ -3795,6 +3795,26 @@
     {
       "name": "magearna-original",
       "id": 10147
+    },
+    {
+      "name": "Anyamon",
+      "id": "0"
+    }
+  ],
+  "users": [
+    {
+      "name": "testUser",
+      "id": 0
+    }
+  ],
+  "users_pokemons": [
+    {
+      "users_id": 0,
+      "pokemons_id": [
+        1,
+        2,
+        3
+      ]
     }
   ]
 }
