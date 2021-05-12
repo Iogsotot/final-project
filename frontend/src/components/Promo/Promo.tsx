@@ -14,12 +14,14 @@ const Promo: FC = () => {
 
   return (
     <section className='promo'>
-      <h1 className="title">
-      Find and collect all pokemons!
-      </h1>
-      <a href="/auth" className='btn'>Login</a>
-      <div className="gallery">
-        <img src={`./pokemons/${getRandomPokemons()}.png`} alt="" />
+      <div className="wrapper">
+        <h1 className="title">
+        Find and collect all pokemons!
+        </h1>
+        <a href="/auth" className='btn'>Login</a>
+        <div className="gallery">
+          <img src={`./pokemons/${getRandomPokemons()}.png`} alt="" />
+        </div>
       </div>
     </section>
   );
