@@ -5,13 +5,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   padding: 9rem 1rem;
-  .title {
-    font-style: normal;
-    font-weight: 900;
-    font-size: 48px;
-    line-height: 56px;
-    color: $basic-white-color;
-  }
+
   .gallery {
     img {
       display: block;
@@ -22,6 +16,7 @@
   }
 
   .btn {
+    display: inline-block;
     margin: 1.5rem auto 3.5rem;
   }
 }

@@ -5,7 +5,9 @@
   font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
     "Droid Sans", "Helvetica Neue", sans-serif;
   color: $basic-white-color;
-
+  .wrapper {
+    max-width: 790px;
+  }
   .title {
     font-style: normal;
     font-weight: 900;
@@ -24,6 +26,10 @@
   }
 
   img {
+    margin: auto;
+    display: block;
     width: 100%;
+    max-width: 50rem;
+    border-radius: 5px;
   }
 }
