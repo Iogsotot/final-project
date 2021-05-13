@@ -10,7 +10,7 @@ const AppDescription: FC = () => (
         you like and click the "Catch" button. Hooray! now it is in your
         Pokemon collection and you can always find it in the "My Collection" tab.
       </p>
-      <img src="/imgs/how-it-works.png" alt="" />
+      <img src="/imgs/how-it-works.jpg" alt="" />
     </div>
   </section>
 );

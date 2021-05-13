@@ -3,10 +3,10 @@ import logo from '../../assets/logo.png';
 import burger from '../../assets/icons/burger.png';
 import './header.scss';
 
-const Header: FC = () => {
-  const any = 1;
+const Header: FC = () =>
+
   // login logic
-  return (
+  (
     <header>
       <div className="wrapper">
         <div className="logo-group">
@@ -30,6 +30,4 @@ const Header: FC = () => {
       </div>
     </header>
   );
-};
-
 export default Header;
