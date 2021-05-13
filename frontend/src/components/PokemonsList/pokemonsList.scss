@@ -1,0 +1,20 @@
+@import "./../../variables";
+
+.pokemons-list {
+  background: $bg-medium-main;
+  padding: 3.7rem 0 5.2rem;
+  .title {
+    text-align: center;
+    margin-bottom: 4.8rem;
+  }
+  .wrapper {
+    .cards-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+    }
+  }
+  .btn--more {
+    margin: 5rem auto 3rem;
+  }
+}
