@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { IPokemonCard } from './PokemonCard.model';
+import './pokemonCard.scss';
 
 const PokemonCard: FC<IPokemonCard> = (props) => {
   const {
