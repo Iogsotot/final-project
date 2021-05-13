@@ -25,7 +25,7 @@ const Footer: FC = () => (
       <div className="line" />
 
       <div className="copyright">
-        <div className="copyright__design">© Design based on the work of No   ora Sagnayeva</div>
+        <div className="copyright__design">© Design based on the work of Noora Sagnayeva</div>
         <div className="copyright__developer">© App made by <b>Anna Justus</b></div>
       </div>
 
