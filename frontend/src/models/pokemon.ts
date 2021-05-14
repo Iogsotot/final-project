@@ -1,69 +1,52 @@
 import { Dispatch } from 'react';
 
-export interface UserPokemon {
-  isCaught: boolean;
+export interface IPokemon {
+  id?: number,
+  name?: string,
 }
 
 export interface Pokemon {
-  name: string,
-  id: number
-}
-
-export interface PokemonListState {
-  id: number | null;
+  id?: string;
+  page?: number;
   name: string;
-  displayButton: boolean;
-  loading: true;
-  // isCaught: boolean;
 }
-
-export interface FetchUserPokemonsProps {
-  // group: number;
-  // page?: number;
-  // amount?: number;
-  // userId: number;
-  userId: any;
-}
-
-// interface FetchUserPokemonsUpdateAction {
-//   type: PokemonListActionTypes.START_FETCH_POKEMON_UPDATE;
-// }
-interface FetchUserPokemonsSuccessAction {
-  type: PokemonListActionTypes.FETCH_POKEMON_LIST_SUCCESS;
-  payload: Pokemon[];
-}
-
-interface FetchUserPokemonsErrorAction {
-  type: PokemonListActionTypes.FETCH_POKEMONS_API_ERROR;
-  payload: string;
-}
-
-export interface PokemonsDispatchProps {
-  // fetchUserPokemons: (
-  //   id: number,
-  //   name: string,
-  // ) => (dispatch: Dispatch<PokemonListAction>) => Promise<void>;
-  showButtons: (show: boolean) => (dispatch: Dispatch<PokemonListAction>) => void;
-  setGroup: (number: number) => (dispatch: Dispatch<PokemonListAction>) => void;
-  fetchPokemons: (group: number, page: number, sort?: number) =>
-    (dispatch: Dispatch<PokemonListAction>) => Promise<void>;
-  fetchUserPokemons: (props: FetchUserPokemonsProps) => (dispatch: Dispatch<PokemonListAction>) => Promise<void>;
+export interface PokemonListState {
+  page: number;
+  pokemons: Pokemon[];
+  loading: boolean;
+  error: null | string;
 }
 
 export interface FetchPokemonListAction {
-  type: PokemonListActionTypes.FETCH_POKEMONS_API;
-  payload: {
-    page?: number,
-    sort: number,
-  }
+  type: PokemonListActionTypes.FETCH_POKEMONS;
+}
+
+export interface FetchMorePokemonListAction {
+  type: PokemonListActionTypes.FETCH_MORE_POKEMONS;
+}
+
+export interface FetchPokemonSuccessed {
+  // payload: Pokemon[];
+  type: PokemonListActionTypes.FETCH_POKEMONS_SUCCESSED;
+}
+
+export interface FetchPokemonFailed {
+  type: PokemonListActionTypes.FETCH_POKEMONS_FAILED;
+}
+
+export interface PokemonsDispatchProps {
+  fetchPokemons: () => (dispatch: Dispatch<PokemonListAction>) => Promise<void>;
 }
 
 export enum PokemonListActionTypes {
-  FETCH_POKEMONS_API = 'FETCH_POKEMONS_API',
-  FETCH_POKEMONS_API_ERROR = 'FETCH_POKEMONS_API_ERROR',
-  SET_POKEMONS = 'SET_POKEMONS',
-  FETCH_POKEMON_LIST_SUCCESS = 'FETCH_POKEMON_LIST_SUCCESS',
+  FETCH_MORE_POKEMONS = 'FETCH_MORE_POKEMONS',
+  FETCH_POKEMONS = 'FETCH_POKEMONS',
+  FETCH_POKEMONS_SUCCESSED = 'FETCH_POKEMONS_SUCCESSED',
+  FETCH_POKEMONS_FAILED = 'FETCH_POKEMONS_FAILED',
 }
 
 export type PokemonListAction =
-  | FetchPokemonListAction;
+  | FetchPokemonListAction
+  | FetchMorePokemonListAction
+  | FetchPokemonSuccessed
+  | FetchPokemonFailed;

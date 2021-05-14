@@ -1,6 +1,6 @@
 export interface IPokemonCard {
-  id?: number,
-  name?: string,
-  date?: number,
-  isCought?: boolean,
+  id?: any,
+  name?: any,
+  date?: any,
+  isCought?: any,
 }
