@@ -1,5 +1,4 @@
 import { applyMiddleware, createStore, compose } from 'redux';
-// import thunk from 'redux-thunk';
 import createSagaMiddleware from 'redux-saga';
 import { rootReducer } from './reducers';
 import rootSaga from './sagas';
@@ -25,6 +24,9 @@ const store = createStore(
 
 sagaMiddleware.run(rootSaga);
 
-store.subscribe(() => { localStorage.reduxState = JSON.stringify(store.getState()); });
+store.subscribe(() => {
+  localStorage.reduxState = JSON.stringify(store.getState());
+  // console.log('subscribe');
+});
 
 export default store;

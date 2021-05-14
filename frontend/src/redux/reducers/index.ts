@@ -1,10 +1,8 @@
 import { combineReducers } from 'redux';
-import { pokemonListReducer } from './pokemonsReducer';
-import { userReducer } from './userReducer';
+import { pokemonListReducer } from './pokemonReducer';
 
 export const rootReducer = combineReducers({
   pokemonList: pokemonListReducer,
-  user: userReducer,
 });
 
 export type IRootState = ReturnType<typeof rootReducer>;
