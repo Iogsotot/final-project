@@ -11,16 +11,26 @@ function getJson(uri: string) {
 }
 
 function* fetchMorePokemons() {
-  const { page } = yield select(store => store.pokemonList);
-  const nextPage = page + 1;
-  yield select(store => store.nextPage);
-  const fetchPokemonsUrl = `http://localhost:7001/pokemons?_limit=12&_page=${nextPage}`;
+  const { page, pokemons, loading, error } = yield select(store => store.pokemonList);
+  const { all } = yield select(store => store);
+  console.log(page, loading, error);
+  console.log(pokemons);
+  console.log(all);
 
+  const updatedPage = page + 1;
+  const fetchPokemonsUrl = `http://localhost:7001/pokemons?_limit=12&_page=${updatedPage}`;
   try {
-    const response: Pokemon[] = yield call(getJson, fetchPokemonsUrl);
-    console.log(nextPage);
+    let response: Pokemon[] = yield call(getJson, fetchPokemonsUrl);
+
+    const newArr = response.concat(pokemons);
+    response = newArr;
+    console.log(newArr);
+
     yield put({
-      type: PokemonListActionTypes.FETCH_POKEMONS_SUCCESSED, payload: { response, nextPage },
+      type: PokemonListActionTypes.FETCH_POKEMONS_SUCCESSED, payload: response,
+    });
+    yield put({
+      type: PokemonListActionTypes.UPDATED_PAGE, payload: updatedPage,
     });
   } catch (err) {
     yield put({ type: PokemonListActionTypes.FETCH_POKEMONS_FAILED, payload: err });
@@ -29,7 +39,6 @@ function* fetchMorePokemons() {
 
 function* fetchPokemons() {
   const fetchPokemonsUrl = 'http://localhost:7001/pokemons?_limit=12&_page=1';
-
   try {
     const response: Pokemon[] = yield call(getJson, fetchPokemonsUrl);
     yield put({

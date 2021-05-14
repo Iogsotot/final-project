@@ -34,6 +34,10 @@ export interface FetchPokemonFailed {
   type: PokemonListActionTypes.FETCH_POKEMONS_FAILED;
 }
 
+export interface UpdatedPage {
+  type: PokemonListActionTypes.UPDATED_PAGE;
+}
+
 export interface PokemonsDispatchProps {
   fetchPokemons: () => (dispatch: Dispatch<PokemonListAction>) => Promise<void>;
 }
@@ -43,10 +47,12 @@ export enum PokemonListActionTypes {
   FETCH_POKEMONS = 'FETCH_POKEMONS',
   FETCH_POKEMONS_SUCCESSED = 'FETCH_POKEMONS_SUCCESSED',
   FETCH_POKEMONS_FAILED = 'FETCH_POKEMONS_FAILED',
+  UPDATED_PAGE = 'UPDATED_PAGE',
 }
 
 export type PokemonListAction =
   | FetchPokemonListAction
   | FetchMorePokemonListAction
   | FetchPokemonSuccessed
-  | FetchPokemonFailed;
+  | FetchPokemonFailed
+  | UpdatedPage;

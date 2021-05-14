@@ -6,6 +6,7 @@ const {
   FETCH_MORE_POKEMONS,
   FETCH_POKEMONS_SUCCESSED,
   FETCH_POKEMONS_FAILED,
+  UPDATED_PAGE
 } = PokemonListActionTypes;
 
 export const initialState: PokemonListState = {
@@ -18,19 +19,23 @@ export const initialState: PokemonListState = {
 export const pokemonListReducer = (state = initialState, action: PokemonListAction): PokemonListState => {
   switch (action.type) {
     case FETCH_POKEMONS:
-      console.log(state.page);
       return { ...state, loading: true };
+
     case FETCH_MORE_POKEMONS:
-      return { ...state, loading: true, };
+      //@ts-ignore
+      return { ...state, loading: true };
 
     case FETCH_POKEMONS_SUCCESSED:
-      console.log(action);
       //@ts-ignore
-      return { ...state, loading: false, pokemons: action.payload.response, page: action.payload.nextPage };
+      return { ...state, loading: false, pokemons: action.payload };
 
     case FETCH_POKEMONS_FAILED:
       //@ts-ignore
       return { ...state, loading: false, error: action.payload };
+
+    case UPDATED_PAGE:
+      //@ts-ignore
+      return { ...state, page: action.payload }
     default:
       return state;
   }
