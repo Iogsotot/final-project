@@ -25,9 +25,9 @@ export interface FetchMorePokemonListAction {
   type: PokemonListActionTypes.FETCH_MORE_POKEMONS;
 }
 
-export interface FetchPokemonSuccessed {
+export interface FetchPokemonOK {
   // payload: Pokemon[];
-  type: PokemonListActionTypes.FETCH_POKEMONS_SUCCESSED;
+  type: PokemonListActionTypes.FETCH_POKEMONS_OK;
 }
 
 export interface FetchPokemonFailed {
@@ -45,7 +45,7 @@ export interface PokemonsDispatchProps {
 export enum PokemonListActionTypes {
   FETCH_MORE_POKEMONS = 'FETCH_MORE_POKEMONS',
   FETCH_POKEMONS = 'FETCH_POKEMONS',
-  FETCH_POKEMONS_SUCCESSED = 'FETCH_POKEMONS_SUCCESSED',
+  FETCH_POKEMONS_OK = 'FETCH_POKEMONS_OK',
   FETCH_POKEMONS_FAILED = 'FETCH_POKEMONS_FAILED',
   UPDATED_PAGE = 'UPDATED_PAGE',
 }
@@ -53,6 +53,6 @@ export enum PokemonListActionTypes {
 export type PokemonListAction =
   | FetchPokemonListAction
   | FetchMorePokemonListAction
-  | FetchPokemonSuccessed
+  | FetchPokemonOK
   | FetchPokemonFailed
   | UpdatedPage;

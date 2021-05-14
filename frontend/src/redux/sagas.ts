@@ -27,7 +27,7 @@ function* fetchMorePokemons() {
     console.log(newArr);
 
     yield put({
-      type: PokemonListActionTypes.FETCH_POKEMONS_SUCCESSED, payload: response,
+      type: PokemonListActionTypes.FETCH_POKEMONS_OK, payload: response,
     });
     yield put({
       type: PokemonListActionTypes.UPDATED_PAGE, payload: updatedPage,
@@ -42,7 +42,7 @@ function* fetchPokemons() {
   try {
     const response: Pokemon[] = yield call(getJson, fetchPokemonsUrl);
     yield put({
-      type: PokemonListActionTypes.FETCH_POKEMONS_SUCCESSED, payload: response,
+      type: PokemonListActionTypes.FETCH_POKEMONS_OK, payload: response,
     });
   } catch (err) {
     yield put({ type: PokemonListActionTypes.FETCH_POKEMONS_FAILED, payload: err });

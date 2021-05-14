@@ -4,7 +4,7 @@ import { PokemonListAction, PokemonListActionTypes, PokemonListState } from '../
 const {
   FETCH_POKEMONS,
   FETCH_MORE_POKEMONS,
-  FETCH_POKEMONS_SUCCESSED,
+  FETCH_POKEMONS_OK,
   FETCH_POKEMONS_FAILED,
   UPDATED_PAGE
 } = PokemonListActionTypes;
@@ -25,7 +25,7 @@ export const pokemonListReducer = (state = initialState, action: PokemonListActi
       //@ts-ignore
       return { ...state, loading: true };
 
-    case FETCH_POKEMONS_SUCCESSED:
+    case FETCH_POKEMONS_OK:
       //@ts-ignore
       return { ...state, loading: false, pokemons: action.payload };
 

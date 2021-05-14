@@ -4,7 +4,7 @@
 import {
   FetchPokemonListAction,
   FetchMorePokemonListAction,
-  FetchPokemonSuccessed,
+  FetchPokemonOK,
   PokemonListActionTypes,
   // Pokemon,
 } from '../../models';
@@ -12,7 +12,7 @@ import {
 const {
   FETCH_POKEMONS,
   FETCH_MORE_POKEMONS,
-  FETCH_POKEMONS_SUCCESSED,
+  FETCH_POKEMONS_OK,
 } = PokemonListActionTypes;
 
 // В таком виде он грузит мне 12 покемонов (всегда одних и тех же)
@@ -28,8 +28,8 @@ export const fetchMorePokemons = (): FetchMorePokemonListAction => {
   };
 };
 
-export const fetchPokemonsSuccessed = (): FetchPokemonSuccessed => {
+export const fetchPokemonsOK = (): FetchPokemonOK => {
   return {
-    type: FETCH_POKEMONS_SUCCESSED,
+    type: FETCH_POKEMONS_OK,
   };
 };
