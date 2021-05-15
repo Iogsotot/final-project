@@ -66,9 +66,15 @@ function* fetchPokemons() {
 }
 
 function* fetchMoreUserPokemons() {
-  const { page, pokemons, userId } = yield select(store => store.userPokemonList);
+  const { page, userPokemons, userId } = yield select(store => store.userPokemonList);
 
-  const updatedPage = page + 1;
+  let updatedPage = page;
+  const pokemonsPerPage = 12;
+  console.log(userPokemons);
+
+  if (userPokemons.length > page / pokemonsPerPage) {
+    updatedPage += 1;
+  }
 
   const fetchUserPokemonsUrl =
     `http://localhost:7001/users_monsters?_expand=user&_expand=monster&userId=${userId}&_limit=12&_page=${updatedPage}`;
@@ -76,8 +82,8 @@ function* fetchMoreUserPokemons() {
   try {
     const response: Pokemon[] = yield call(getJson, fetchUserPokemonsUrl);
     let newArr = response;
-    if (pokemons !== undefined) {
-      newArr = pokemons.concat(response);
+    if (userPokemons !== undefined) {
+      newArr = userPokemons.concat(response);
     }
 
     yield put({
