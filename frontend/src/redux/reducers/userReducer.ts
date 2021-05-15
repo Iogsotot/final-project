@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import {
   UserPokemonListAction,
   UserPokemonListActionTypes,
@@ -9,10 +10,13 @@ const {
   FETCH_USER_POKEMONS_OK,
   FETCH_USER_POKEMONS_FAILED,
   UPDATED_USER_PAGE,
+  FETCH_MORE_USER_POKEMONS,
 } = UserPokemonListActionTypes;
 
 export const initialState: UserPokemonListState = {
-  userId: null,
+  // userId: null,
+  userId: 1,
+  userName: '',
   page: 1,
   loading: false,
   error: null,
@@ -27,7 +31,11 @@ export const userPokemonListReducer = (
     case FETCH_USER_POKEMONS:
       return { ...state, loading: true };
 
+    case FETCH_MORE_USER_POKEMONS:
+      return { ...state, loading: true };
+
     case FETCH_USER_POKEMONS_OK:
+      // @ts-ignore
       return { ...state, loading: false, userPokemons: action.payload };
 
     case FETCH_USER_POKEMONS_FAILED:

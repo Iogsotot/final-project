@@ -1,12 +1,21 @@
-import { Dispatch } from 'react';
 import { Pokemon } from './pokemon';
+
+export interface UserPokemon {
+  monster?: Pokemon;
+  monsterId: number;
+  caughtDate: string;
+  id?: string;
+  // page?: number;
+  name: string;
+}
 
 export interface UserPokemonListState {
   page: number;
-  userPokemons: Pokemon[];
+  userPokemons: UserPokemon[];
   loading: boolean;
   error: null | string;
   userId: number | null;
+  userName: string;
 }
 
 export interface FetchUserPokemonListAction {
@@ -15,12 +24,16 @@ export interface FetchUserPokemonListAction {
 
 export interface FetchUserPokemonOK {
   type: UserPokemonListActionTypes.FETCH_USER_POKEMONS_OK;
-  payload: Pokemon[],
+  // payload?: Pokemon[],
+}
+
+export interface FetchMoreUserPokemon {
+  type: UserPokemonListActionTypes.FETCH_MORE_USER_POKEMONS;
 }
 
 export interface FetchUserPokemonFailed {
   type: UserPokemonListActionTypes.FETCH_USER_POKEMONS_FAILED;
-  payload: string,
+  payload: null | string,
 }
 
 export interface UpdatedUserPage {
@@ -30,6 +43,7 @@ export interface UpdatedUserPage {
 
 export enum UserPokemonListActionTypes {
   FETCH_USER_POKEMONS = 'FETCH_USER_POKEMONS',
+  FETCH_MORE_USER_POKEMONS = 'FETCH_MORE_USER_POKEMONS',
   FETCH_USER_POKEMONS_OK = 'FETCH_USER_POKEMONS_OK',
   FETCH_USER_POKEMONS_FAILED = 'FETCH_USER_POKEMONS_FAILED',
   UPDATED_USER_PAGE = 'UPDATED_USER_PAGE',
@@ -37,6 +51,7 @@ export enum UserPokemonListActionTypes {
 
 export type UserPokemonListAction =
   | FetchUserPokemonListAction
+  | FetchMoreUserPokemon
   | FetchUserPokemonOK
   | FetchUserPokemonFailed
   | UpdatedUserPage;

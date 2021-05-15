@@ -3,7 +3,7 @@ import {
   FetchPokemonListAction,
   Pokemon,
   PokemonListActionTypes,
-  UserListActionTypes,
+  UserPokemonListActionTypes,
 } from '../models';
 
 function getJson(uri: string) {
@@ -50,28 +50,49 @@ function* fetchPokemons() {
   }
 }
 
-function* fetchUserPokemons() {
-  const { page, pokemons, user } = yield select(store => store.user);
+function* fetchMoreUserPokemons() {
+  const { page, pokemons, userId } = yield select(store => store.userPokemonList);
 
   const updatedPage = page + 1;
+
   const fetchUserPokemonsUrl =
-    `http://localhost:7001/users_monsters?_expand=user&_expand=monster&userId=0_limit=12&_page=${updatedPage}`;
+    `http://localhost:7001/users_monsters?_expand=user&_expand=monster&userId=${userId}&_limit=12&_page=${updatedPage}`;
 
   try {
     const response: Pokemon[] = yield call(getJson, fetchUserPokemonsUrl);
-
-    const newArr = pokemons.concat(response);
-    console.log(newArr);
+    let newArr = response;
+    if (pokemons !== undefined) {
+      newArr = pokemons.concat(response);
+    }
+    console.log({ newArr });
 
     yield put({
-      type: UserListActionTypes.FETCH_USER_POKEMONS_OK, payload: newArr,
+      type: UserPokemonListActionTypes.FETCH_USER_POKEMONS_OK, payload: newArr,
     });
     yield put({
-      type: UserListActionTypes.UPDATED_USER_PAGE, payload: updatedPage,
+      type: UserPokemonListActionTypes.UPDATED_USER_PAGE, payload: updatedPage,
     });
   } catch (err) {
     yield put({
-      type: UserListActionTypes.FETCH_USER_POKEMONS_FAILED, payload: err,
+      type: UserPokemonListActionTypes.FETCH_USER_POKEMONS_FAILED, payload: err,
+    });
+  }
+}
+
+function* fetchUserPokemons() {
+  const { userId } = yield select(store => store.userPokemonList);
+  const fetchPokemonsUrl =
+    `http://localhost:7001/users_monsters?_expand=user&_expand=monster&userId=${userId}&_limit=12&_page=1`;
+
+  try {
+    const response: Pokemon[] = yield call(getJson, fetchPokemonsUrl);
+    const newArr = response;
+    yield put({
+      type: UserPokemonListActionTypes.FETCH_USER_POKEMONS_OK, payload: newArr,
+    });
+  } catch (err) {
+    yield put({
+      type: UserPokemonListActionTypes.FETCH_USER_POKEMONS_FAILED, payload: err,
     });
   }
 }
