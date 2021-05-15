@@ -6,7 +6,8 @@ const {
   FETCH_MORE_POKEMONS,
   FETCH_POKEMONS_OK,
   FETCH_POKEMONS_FAILED,
-  UPDATED_PAGE
+  UPDATED_PAGE,
+  RESET_PAGE
 } = PokemonListActionTypes;
 
 export const initialState: PokemonListState = {
@@ -37,6 +38,10 @@ export const pokemonListReducer = (
     case UPDATED_PAGE:
       // @ts-ignore
       return { ...state, page: action.payload }
+
+    case RESET_PAGE:
+      return { ...state, page: 1 }
+
     default:
       return state;
   }

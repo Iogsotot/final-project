@@ -11,6 +11,9 @@ const {
   FETCH_USER_POKEMONS_FAILED,
   UPDATED_USER_PAGE,
   FETCH_MORE_USER_POKEMONS,
+  CATCH_POKEMONS,
+  CATCH_POKEMONS_FAILED,
+  CATCH_POKEMONS_OK,
 } = UserPokemonListActionTypes;
 
 export const initialState: UserPokemonListState = {
@@ -35,7 +38,7 @@ export const userPokemonListReducer = (
       return { ...state, loading: true };
 
     case FETCH_USER_POKEMONS_OK:
-      // @ts-ignore
+
       return { ...state, loading: false, userPokemons: action.payload };
 
     case FETCH_USER_POKEMONS_FAILED:
@@ -43,6 +46,15 @@ export const userPokemonListReducer = (
 
     case UPDATED_USER_PAGE:
       return { ...state, page: action.payload };
+
+    case CATCH_POKEMONS:
+      return { ...state };
+
+    case CATCH_POKEMONS_FAILED:
+      return { ...state, error: action.payload };
+
+    case CATCH_POKEMONS_OK:
+      return { ...state, userPokemons: action.payload };
 
     default:
       return state;

@@ -1,9 +1,10 @@
-import { call, put, select, takeLatest, takeEvery } from 'redux-saga/effects';
+import { call, put, select, takeLatest, takeEvery, take } from 'redux-saga/effects';
 import {
   FetchPokemonListAction,
   Pokemon,
   PokemonListActionTypes,
   UserPokemonListActionTypes,
+  UserPokemon,
 } from '../models';
 
 function getJson(uri: string) {
@@ -12,6 +13,17 @@ function getJson(uri: string) {
     headers: {
       Accept: 'application/json',
     },
+  }).then(data => data.json());
+}
+
+function postJson(uri: string, body: any) {
+  return fetch(uri, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(body),
   }).then(data => data.json());
 }
 
@@ -45,6 +57,9 @@ function* fetchPokemons() {
     yield put({
       type: PokemonListActionTypes.FETCH_POKEMONS_OK, payload: response,
     });
+    yield put({
+      type: PokemonListActionTypes.RESET_PAGE,
+    });
   } catch (err) {
     yield put({ type: PokemonListActionTypes.FETCH_POKEMONS_FAILED, payload: err });
   }
@@ -64,7 +79,6 @@ function* fetchMoreUserPokemons() {
     if (pokemons !== undefined) {
       newArr = pokemons.concat(response);
     }
-    console.log({ newArr });
 
     yield put({
       type: UserPokemonListActionTypes.FETCH_USER_POKEMONS_OK, payload: newArr,
@@ -97,10 +111,38 @@ function* fetchUserPokemons() {
   }
 }
 
+function* catchPokemons(payload: any) {
+  const { userId, userPokemons } = yield select(store => store.userPokemonList);
+  const fetchPokemonsUrl =
+    'http://localhost:7001/users_monsters/';
+
+  const updatedUserPokemons = { ...userPokemons };
+
+  try {
+    const body = payload.payload;
+    const response: Pokemon[] = yield call(postJson, fetchPokemonsUrl, body);
+    // проверить, что запрос ушёл и всё ок
+    updatedUserPokemons.push(body);
+    console.log(body);
+
+    // изменить состояние покемона в store
+    yield put({
+      type: UserPokemonListActionTypes.CATCH_POKEMONS_OK, payload: body,
+    });
+    // просто позову другую сагу
+  } catch (err) {
+    yield put({
+      type: UserPokemonListActionTypes.CATCH_POKEMONS_FAILED, payload: err,
+    });
+  }
+}
+
 function* rootSaga(): Generator {
   yield takeEvery('FETCH_POKEMONS', fetchPokemons);
   yield takeLatest('FETCH_MORE_POKEMONS', fetchMorePokemons);
   yield takeEvery('FETCH_USER_POKEMONS', fetchUserPokemons);
+  yield takeLatest('FETCH_MORE_USER_POKEMONS', fetchMoreUserPokemons);
+  yield takeEvery('CATCH_POKEMONS', catchPokemons);
 }
 
 export default rootSaga;

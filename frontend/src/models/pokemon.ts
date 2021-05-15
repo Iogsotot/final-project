@@ -46,12 +46,17 @@ export interface PokemonsDispatchProps {
   fetchPokemons: () => (dispatch: Dispatch<PokemonListAction>) => Promise<void>;
 }
 
+export interface ResetPage {
+  type: PokemonListActionTypes.RESET_PAGE;
+}
+
 export enum PokemonListActionTypes {
   FETCH_MORE_POKEMONS = 'FETCH_MORE_POKEMONS',
   FETCH_POKEMONS = 'FETCH_POKEMONS',
   FETCH_POKEMONS_OK = 'FETCH_POKEMONS_OK',
   FETCH_POKEMONS_FAILED = 'FETCH_POKEMONS_FAILED',
   UPDATED_PAGE = 'UPDATED_PAGE',
+  RESET_PAGE = 'RESET_PAGE',
 }
 
 export type PokemonListAction =
@@ -59,4 +64,5 @@ export type PokemonListAction =
   | FetchMorePokemonListAction
   | FetchPokemonOK
   | FetchPokemonFailed
-  | UpdatedPage;
+  | UpdatedPage
+  | ResetPage;

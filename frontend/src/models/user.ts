@@ -2,7 +2,8 @@ import { Pokemon } from './pokemon';
 
 export interface UserPokemon {
   monster?: Pokemon;
-  monsterId: number;
+  monsterId?: number;
+  userId?: number | null;
   caughtDate: string;
   id?: string;
   // page?: number;
@@ -23,6 +24,8 @@ export interface FetchUserPokemonListAction {
 }
 
 export interface FetchUserPokemonOK {
+  // payload?: UserPokemon[];
+  payload?: any;
   type: UserPokemonListActionTypes.FETCH_USER_POKEMONS_OK;
   // payload?: Pokemon[],
 }
@@ -41,12 +44,31 @@ export interface UpdatedUserPage {
   payload: number,
 }
 
+export interface CatchPokemons {
+  payload: UserPokemon;
+  type: UserPokemonListActionTypes.CATCH_POKEMONS;
+}
+
+export interface CatchPokemonsFailed {
+  payload: string | null;
+  type: UserPokemonListActionTypes.CATCH_POKEMONS_FAILED
+}
+
+export interface CatchPokemonsOK {
+  type: UserPokemonListActionTypes.CATCH_POKEMONS_OK;
+  // payload: UserPokemon[];
+  payload?: any;
+}
+
 export enum UserPokemonListActionTypes {
   FETCH_USER_POKEMONS = 'FETCH_USER_POKEMONS',
   FETCH_MORE_USER_POKEMONS = 'FETCH_MORE_USER_POKEMONS',
   FETCH_USER_POKEMONS_OK = 'FETCH_USER_POKEMONS_OK',
   FETCH_USER_POKEMONS_FAILED = 'FETCH_USER_POKEMONS_FAILED',
   UPDATED_USER_PAGE = 'UPDATED_USER_PAGE',
+  CATCH_POKEMONS = 'CATCH_POKEMONS',
+  CATCH_POKEMONS_OK = 'CATCH_POKEMONS_OK',
+  CATCH_POKEMONS_FAILED = 'CATCH_POKEMONS_FAILED',
 }
 
 export type UserPokemonListAction =
@@ -54,4 +76,7 @@ export type UserPokemonListAction =
   | FetchMoreUserPokemon
   | FetchUserPokemonOK
   | FetchUserPokemonFailed
-  | UpdatedUserPage;
+  | UpdatedUserPage
+  | CatchPokemons
+  | CatchPokemonsFailed
+  | CatchPokemonsOK;
