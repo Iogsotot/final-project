@@ -130,15 +130,11 @@ function* catchPokemons(action: any) {
     const response: Pokemon[] = yield call(postJson, fetchPokemonsUrl, body);
     // проверить, что запрос ушёл и всё ок
     updatedUserPokemons.push(body);
-    console.log(body);
-
-    // изменить состояние покемона в store
     yield put({
       type: UserPokemonListActionTypes.CATCH_POKEMONS_OK, payload: body,
     });
-    // просто позову другую сагу
   } catch (err) {
-    console.error(err);
+    // console.error(err);
     yield put({
       type: UserPokemonListActionTypes.CATCH_POKEMONS_FAILED, payload: err,
     });
