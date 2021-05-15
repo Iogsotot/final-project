@@ -1,34 +1,48 @@
 /* eslint-disable arrow-body-style */
-import { FC, useMemo } from 'react';
+import { FC, useMemo, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import {
-  fetchMorePokemons, fetchPokemons } from '../../redux/action-creactors/pokemonsAction';
+  fetchMorePokemons,
+  fetchPokemons,
+} from '../../redux/action-creactors/pokemonsAction';
+import { fetchMoreUserPokemons, fetchUserPokemons } from '../../redux/action-creactors/userAction';
 // import fetchPokemons from '../../redux/action-creactors/pokemonsAction';
 // import { useAction } from '../../hooks/useAction';
 import PokemonCard from '../PokemonCard';
 import Spinner from '../Spinner/Spinner';
 import EmptyPage from './EmptyPage';
 import './pokemonsList.scss';
+import { Pokemon, UserPokemon } from '../../models';
 
 const PokemonsList: FC<{ filter?: boolean | string }> = ({ filter }) => {
   const { pokemons, loading } = useTypedSelector(store => store.pokemonList);
+  const { userPokemons, userId } = useTypedSelector(store => store.userPokemonList);
   const dispatch = useDispatch();
 
-  const filteredPokemons = useMemo(() => {
-    if (pokemons && pokemons.length) {
-      const newPokemons = [...pokemons];
-      return newPokemons;
+  const getFilteredPokemons = () => {
+    if (!filter || filter === 'MainPage') {
+      return pokemons;
     }
-    return [];
-  }, [pokemons]);
+    return userPokemons;
+  };
 
-  if (!pokemons || filteredPokemons.length === 0) {
+  useEffect(() => {
+    if (!filter || filter === 'MainPage') {
+      dispatch(fetchPokemons());
+    }
+    if (userId) {
+      dispatch(fetchUserPokemons());
+    }
+  }, []);
+
+  const filteredPokemons = getFilteredPokemons();
+
+  if (!pokemons || (filter && filteredPokemons.length === 0)) {
     return (
       !loading ?
         <div className='pokemons'>
           <EmptyPage />
-          <button onClick={() => dispatch(fetchPokemons())}>Добавить покемонов</button>
         </div>
         :
         (<div className='pokemons'>
@@ -37,20 +51,52 @@ const PokemonsList: FC<{ filter?: boolean | string }> = ({ filter }) => {
     );
   }
 
+  const FilteredPokemons: FC = () => {
+    return (
+      <>
+        {!loading ? (filteredPokemons.map(
+          (pokemon: UserPokemon) => {
+            const pokemonProps = { ...pokemon.monster, caughtDate: pokemon.caughtDate };
+            return <PokemonCard key={pokemon.id} {...pokemonProps} />;
+          },
+        )) : (<Spinner />)
+        }
+      </>
+    );
+  };
+
+  const NonFilteredPokemons: FC = () => {
+    return (
+      <>
+        {!loading ? (pokemons.map(
+          (pokemon:Pokemon) => {
+            const pokemonProps = { ...pokemon };
+            if (userPokemons) {
+              const result = userPokemons.find((userPokemon:UserPokemon) => userPokemon.monsterId === pokemon.id);
+              if (result) {
+                pokemonProps.caughtDate = result.caughtDate;
+              }
+            }
+            return <PokemonCard key={pokemon.id} {...pokemonProps} />;
+          },
+        )) : (<Spinner />)
+        }
+      </>
+    );
+  };
+
+  const pokemonListTitle = filter ? 'MyPokemons' : 'Pokemons';
+  const pokemonsListAction = filter ? fetchMoreUserPokemons : fetchMorePokemons;
   return (
     <section className='pokemons-list'>
       <div className="wrapper">
-        <h2 className="title">Pokemons</h2>
+        <h2 className="title">{pokemonListTitle}</h2>
         <div className="cards-list">
-          {!loading ? (pokemons.map(
-            pokemon => (
-              <PokemonCard key={pokemon.id} {...pokemon} />
-            ),
-          )) : (<Spinner />)
+          {!filter ? <NonFilteredPokemons/> : <FilteredPokemons/>
           }
         </div>
 
-        <button onClick={() => dispatch(fetchMorePokemons())} className='btn btn--more'>Load more</button>
+        <button onClick={() => dispatch(pokemonsListAction())} className='btn btn--more'>Load more</button>
       </div>
     </section>
   );

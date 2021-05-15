@@ -1,12 +1,9 @@
-/* eslint-disable func-names */
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable arrow-body-style */
 import {
   FetchPokemonListAction,
   FetchMorePokemonListAction,
   FetchPokemonOK,
   PokemonListActionTypes,
-  // Pokemon,
 } from '../../models';
 
 const {
@@ -15,7 +12,6 @@ const {
   FETCH_POKEMONS_OK,
 } = PokemonListActionTypes;
 
-// В таком виде он грузит мне 12 покемонов (всегда одних и тех же)
 export const fetchPokemons = (): FetchPokemonListAction => {
   return {
     type: FETCH_POKEMONS,

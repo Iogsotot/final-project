@@ -6,13 +6,15 @@ export interface IPokemon {
 }
 
 export interface Pokemon {
-  id?: string;
-  page?: number;
+  id: number;
   name: string;
+  caughtDate?: string;
 }
+
 export interface PokemonListState {
   page: number;
-  pokemons: Pokemon[];
+  // pokemons: Pokemon[];
+  pokemons: any;
   loading: boolean;
   error: null | string;
 }
@@ -26,16 +28,18 @@ export interface FetchMorePokemonListAction {
 }
 
 export interface FetchPokemonOK {
-  // payload: Pokemon[];
   type: PokemonListActionTypes.FETCH_POKEMONS_OK;
+  // payload?: Pokemon[];
 }
 
 export interface FetchPokemonFailed {
   type: PokemonListActionTypes.FETCH_POKEMONS_FAILED;
+  // payload: null | string;
 }
 
 export interface UpdatedPage {
   type: PokemonListActionTypes.UPDATED_PAGE;
+  // payload: number;
 }
 
 export interface PokemonsDispatchProps {

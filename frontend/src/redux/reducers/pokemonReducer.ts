@@ -16,25 +16,26 @@ export const initialState: PokemonListState = {
   error: null,
 };
 
-export const pokemonListReducer = (state = initialState, action: PokemonListAction): PokemonListState => {
+export const pokemonListReducer = (
+  state = initialState,
+  action: PokemonListAction): PokemonListState => {
   switch (action.type) {
     case FETCH_POKEMONS:
       return { ...state, loading: true };
 
     case FETCH_MORE_POKEMONS:
-      //@ts-ignore
       return { ...state, loading: true };
 
     case FETCH_POKEMONS_OK:
-      //@ts-ignore
+      // @ts-ignore
       return { ...state, loading: false, pokemons: action.payload };
 
     case FETCH_POKEMONS_FAILED:
-      //@ts-ignore
+      // @ts-ignore
       return { ...state, loading: false, error: action.payload };
 
     case UPDATED_PAGE:
-      //@ts-ignore
+      // @ts-ignore
       return { ...state, page: action.payload }
     default:
       return state;

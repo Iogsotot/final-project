@@ -16,8 +16,21 @@
     display: block;
   }
   .btn {
+    cursor: pointer;
     display: block;
     margin: 1.5rem auto 2.5rem;
+    &:disabled {
+      cursor: not-allowed;
+      -webkit-filter: grayscale(100%);
+      -moz-filter: grayscale(100%);
+      -ms-filter: grayscale(100%);
+      -o-filter: grayscale(100%);
+      filter: grayscale(100%);
+      filter: gray; /* IE 6-9 */
+      &:hover {
+        opacity: 1;
+      }
+    }
   }
 }
 
