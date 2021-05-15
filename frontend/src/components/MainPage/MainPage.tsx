@@ -1,17 +1,16 @@
 import { FC } from 'react';
 import Promo from '../Promo';
 import AppDescription from '../AppDescription';
-import PokemonsList from '../PokemonsList';
+import Gallery from '../Gallery';
+import MyPokemons from '../MyPokemons.tsx';
 
-const MainPage: FC = () => {
-  const any = 1;
-  return (
-    <main>
-      <Promo />
-      <AppDescription />
-      <PokemonsList />
-    </main>
-  );
-};
+const MainPage: FC = () => (
+  <main>
+    <Promo />
+    <AppDescription />
+    <Gallery />
+    <MyPokemons/>
+  </main>
+);
 
 export default MainPage;
