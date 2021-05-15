@@ -1,5 +1,10 @@
 import { call, put, select, takeLatest, takeEvery } from 'redux-saga/effects';
-import { FetchPokemonListAction, Pokemon, PokemonListActionTypes } from '../models';
+import {
+  FetchPokemonListAction,
+  Pokemon,
+  PokemonListActionTypes,
+  UserListActionTypes,
+} from '../models';
 
 function getJson(uri: string) {
   return fetch(uri, {
@@ -11,18 +16,14 @@ function getJson(uri: string) {
 }
 
 function* fetchMorePokemons() {
-  const { page, pokemons, loading, error } = yield select(store => store.pokemonList);
-  const { all } = yield select(store => store);
-  console.log(page, loading, error);
-  console.log(pokemons);
-  console.log(all);
+  const { page, pokemons } = yield select(store => store.pokemonList);
 
   const updatedPage = page + 1;
-  const fetchPokemonsUrl = `http://localhost:7001/pokemons?_limit=12&_page=${updatedPage}`;
+  const fetchPokemonsUrl = `http://localhost:7001/monsters?_limit=12&_page=${updatedPage}`;
   try {
     let response: Pokemon[] = yield call(getJson, fetchPokemonsUrl);
 
-    const newArr = response.concat(pokemons);
+    const newArr = pokemons.concat(response);
     response = newArr;
     console.log(newArr);
 
@@ -38,7 +39,7 @@ function* fetchMorePokemons() {
 }
 
 function* fetchPokemons() {
-  const fetchPokemonsUrl = 'http://localhost:7001/pokemons?_limit=12&_page=1';
+  const fetchPokemonsUrl = 'http://localhost:7001/monsters?_limit=12&_page=1';
   try {
     const response: Pokemon[] = yield call(getJson, fetchPokemonsUrl);
     yield put({
@@ -49,9 +50,36 @@ function* fetchPokemons() {
   }
 }
 
+function* fetchUserPokemons() {
+  const { page, pokemons, user } = yield select(store => store.user);
+
+  const updatedPage = page + 1;
+  const fetchUserPokemonsUrl =
+    `http://localhost:7001/users_monsters?_expand=user&_expand=monster&userId=0_limit=12&_page=${updatedPage}`;
+
+  try {
+    const response: Pokemon[] = yield call(getJson, fetchUserPokemonsUrl);
+
+    const newArr = pokemons.concat(response);
+    console.log(newArr);
+
+    yield put({
+      type: UserListActionTypes.FETCH_USER_POKEMONS_OK, payload: newArr,
+    });
+    yield put({
+      type: UserListActionTypes.UPDATED_USER_PAGE, payload: updatedPage,
+    });
+  } catch (err) {
+    yield put({
+      type: UserListActionTypes.FETCH_USER_POKEMONS_FAILED, payload: err,
+    });
+  }
+}
+
 function* rootSaga(): Generator {
   yield takeEvery('FETCH_POKEMONS', fetchPokemons);
   yield takeLatest('FETCH_MORE_POKEMONS', fetchMorePokemons);
+  yield takeEvery('FETCH_USER_POKEMONS', fetchUserPokemons);
 }
 
 export default rootSaga;
