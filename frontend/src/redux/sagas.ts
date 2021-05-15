@@ -117,15 +117,16 @@ function* fetchUserPokemons() {
   }
 }
 
-function* catchPokemons(payload: any) {
+function* catchPokemons(action: any) {
   const { userId, userPokemons } = yield select(store => store.userPokemonList);
   const fetchPokemonsUrl =
     'http://localhost:7001/users_monsters/';
 
-  const updatedUserPokemons = { ...userPokemons };
+  const updatedUserPokemons = [...userPokemons];
+  console.log(action);
 
   try {
-    const body = payload.payload;
+    const body = action.payload;
     const response: Pokemon[] = yield call(postJson, fetchPokemonsUrl, body);
     // проверить, что запрос ушёл и всё ок
     updatedUserPokemons.push(body);
@@ -137,6 +138,7 @@ function* catchPokemons(payload: any) {
     });
     // просто позову другую сагу
   } catch (err) {
+    console.error(err);
     yield put({
       type: UserPokemonListActionTypes.CATCH_POKEMONS_FAILED, payload: err,
     });
