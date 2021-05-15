@@ -1,5 +1,5 @@
 {
-  "pokemons": [
+  "monsters": [
     {
       "name": "bulbasaur",
       "id": 1
@@ -3805,16 +3805,32 @@
     {
       "name": "testUser",
       "id": 0
+    },
+    {
+      "name": "testUser_1",
+      "id": 1
     }
   ],
-  "users_pokemons": [
+  "users_monsters": [
     {
-      "users_id": 0,
-      "pokemons_id": [
-        1,
-        2,
-        3
-      ]
+      "userId": 0,
+      "monsterId": 1,
+      "caughtDate": "Thu May 13 2021"
+    },
+    {
+      "userId": 0,
+      "monsterId": 2,
+      "caughtDate": "Thu May 13 2021"
+    },
+    {
+      "userId": 0,
+      "monsterId": 5,
+      "caughtDate": "Thu May 13 2021"
+    },
+    {
+      "userId": 1,
+      "monsterId": 1,
+      "caughtDate": "Thu May 13 2021"
     }
   ]
 }
