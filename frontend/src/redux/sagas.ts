@@ -72,7 +72,7 @@ function* fetchMoreUserPokemons() {
   const pokemonsPerPage = 12;
   console.log(userPokemons);
 
-  if (userPokemons.length > page / pokemonsPerPage) {
+  if (page < (userPokemons.length / pokemonsPerPage)) {
     updatedPage += 1;
   }
 
