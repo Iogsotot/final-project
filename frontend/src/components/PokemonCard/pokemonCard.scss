@@ -20,8 +20,6 @@
   .pokemon-card__portal:hover .pokemon-card__img {
     transition: all 350ms linear;
     transform: scale(1.1);
-    // filter: hue-rotate(25deg);
-    // -webkit-filter: hue-rotate(25deg);
     filter: brightness(100%);
     -webkit-filter: brightness(100%);
   }

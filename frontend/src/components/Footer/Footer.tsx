@@ -18,7 +18,7 @@ const Footer: FC = () => (
         <nav>
           <ul className='footer__nav'>
             <Link to='/' className="nav__item">Home</Link>
-            <Link to='myPokemons' className="nav__item">My Collection</Link>
+            <Link to='/myPokemons' className="nav__item">My Collection</Link>
           </ul>
         </nav>
       </div>
