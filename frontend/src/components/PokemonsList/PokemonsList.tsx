@@ -80,7 +80,7 @@ const PokemonsList: FC<{ filter?: boolean | string }> = ({ filter }) => {
     </>;
   }
 
-  const pokemonListTitle = filter ? 'MyPokemons' : 'Pokemons';
+  const pokemonListTitle = filter ? 'My Pokemons' : 'Pokemons';
   const pokemonsListAction = filter ? fetchMoreUserPokemons : fetchMorePokemons;
   return (
     <section className='pokemons-list'>

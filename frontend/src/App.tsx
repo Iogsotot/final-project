@@ -8,11 +8,13 @@ import { Router } from './routes';
 
 const App: FC = () => (
   <Provider store={store}>
-    <div className="App">
+    <Router>
       <Header />
-      <Router />
+      <div className="App">
+        <Router />
+      </div>
       <Footer />
-    </div>
+    </Router>
   </Provider>
 );
 

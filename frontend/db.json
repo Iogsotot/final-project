@@ -3825,51 +3825,11 @@
       "caughtDate": "2021-05-15T17:23:18.717Z"
     },
     {
-      "id": 2,
-      "userId": 0,
-      "monsterId": 5,
-      "caughtDate": "2021-05-15T17:23:18.717Z"
-    },
-    {
-      "id": 3,
-      "userId": 1,
       "monsterId": 1,
-      "caughtDate": "2021-05-15T17:23:18.717Z"
-    },
-    {
-      "monsterId": 2,
-      "name": "ivysaur",
+      "name": "bulbasaur",
       "userId": 1,
-      "caughtDate": "2021-05-15T17:23:18.717Z",
-      "id": 4
-    },
-    {
-      "monsterId": 3,
-      "name": "venusaur",
-      "userId": 1,
-      "caughtDate": "2021-05-15T17:27:06.851Z",
-      "id": 5
-    },
-    {
-      "monsterId": 6,
-      "name": "charizard",
-      "userId": 1,
-      "caughtDate": "2021-05-15T17:27:53.690Z",
-      "id": 6
-    },
-    {
-      "monsterId": 5,
-      "name": "charmeleon",
-      "userId": 1,
-      "caughtDate": "2021-05-15T17:31:33.801Z",
-      "id": 7
-    },
-    {
-      "monsterId": 4,
-      "name": "charmander",
-      "userId": 1,
-      "caughtDate": "2021-05-15T17:32:20.812Z",
-      "id": 8
+      "caughtDate": "2021-05-16T07:40:26.104Z",
+      "id": 2
     }
   ]
 }

@@ -3,7 +3,7 @@ import logo from '../../assets/logo.png';
 import './footer.scss';
 
 const Footer: FC = () => (
-  <footer>
+  <footer id='contacts'>
     <div className="wrapper">
       <div className="nav-group">
         <div className="logo-group">
