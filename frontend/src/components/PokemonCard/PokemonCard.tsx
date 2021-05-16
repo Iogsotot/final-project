@@ -26,12 +26,15 @@ const PokemonCard: FC<IPokemonCard> = (props) => {
   }
 
   return (
-    <Link to={`/pokemon/${id}`}>
+    <>
       <div className="pokemon-card">
-        <img src={`${pokemonImg}.png`} alt={name} />
+        <Link to={`/pokemon/${id}`} className='pokemon-card__portal'>
+          <img src={`${pokemonImg}.png`} alt={name} className='pokemon-card__img'/>
+          <div className="pokemon-card__name">{name}</div>
+        </Link>
         <button className="btn" disabled={!!caughtDate} onClick={catchPokemon}>catch!</button>
       </div>
-    </Link>
+    </>
   );
 };
 

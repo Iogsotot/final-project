@@ -54,6 +54,9 @@ const PokemonCard: FC<IPokemonCard> = () => {
           <button className="btn" disabled={!!caughtDate} onClick={catchPokemon}>catch!</button>
         </div>
         <div className="pokemon-info">
+          <div className="pokemon-info__id">
+            Id: {pokemon.id}
+          </div>
           <div className="pokemon-info__name">
             Name: {pokemon.name}
           </div>
