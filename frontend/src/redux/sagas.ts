@@ -123,7 +123,6 @@ function* catchPokemons(action: any) {
     'http://localhost:7001/users_monsters/';
 
   const updatedUserPokemons = [...userPokemons];
-  console.log(action);
 
   try {
     const body = action.payload;
@@ -134,7 +133,6 @@ function* catchPokemons(action: any) {
       type: UserPokemonListActionTypes.CATCH_POKEMONS_OK, payload: body,
     });
   } catch (err) {
-    // console.error(err);
     yield put({
       type: UserPokemonListActionTypes.CATCH_POKEMONS_FAILED, payload: err,
     });

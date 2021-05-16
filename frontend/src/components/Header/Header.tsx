@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { Link } from 'react-router-dom';
 import logo from '../../assets/logo.png';
 import burger from '../../assets/icons/burger.png';
 import './header.scss';
@@ -20,9 +21,9 @@ const Header: FC = () =>
         <nav>
           <img src={burger} alt='menu' className="burger" />
           <ul className='header__nav'>
-            <li className="nav__item">Home</li>
-            <li className="nav__item">My Collection</li>
-            <li className="nav__item">Contacts</li>
+            <Link to='/' className="nav__item">Home</Link>
+            <Link to='/myPokemons' className="nav__item">My Collection</Link>
+            <a href="#contacts" className="nav__item">Contacts</a>
           </ul>
         </nav>
 

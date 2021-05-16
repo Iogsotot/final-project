@@ -1,14 +1,14 @@
 /* eslint-disable arrow-body-style */
-import { FC, useMemo, useEffect } from 'react';
+// this rule is disabled to improve the readability of the code
+import { FC, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import {
   fetchMorePokemons,
   fetchPokemons,
 } from '../../redux/action-creactors/pokemonsAction';
 import { fetchMoreUserPokemons, fetchUserPokemons } from '../../redux/action-creactors/userAction';
-// import fetchPokemons from '../../redux/action-creactors/pokemonsAction';
-// import { useAction } from '../../hooks/useAction';
 import PokemonCard from '../PokemonCard';
 import Spinner from '../Spinner/Spinner';
 import EmptyPage from './EmptyPage';
@@ -80,7 +80,7 @@ const PokemonsList: FC<{ filter?: boolean | string }> = ({ filter }) => {
     </>;
   }
 
-  const pokemonListTitle = filter ? 'MyPokemons' : 'Pokemons';
+  const pokemonListTitle = filter ? 'My Pokemons' : 'Pokemons';
   const pokemonsListAction = filter ? fetchMoreUserPokemons : fetchMorePokemons;
   return (
     <section className='pokemons-list'>

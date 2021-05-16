@@ -3,6 +3,11 @@
 header {
   position: sticky;
   padding: 1.5rem;
+  color: $basic-white-color;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1.6rem;
+  line-height: 1.9rem;
 
   .wrapper {
     display: flex;
@@ -12,7 +17,25 @@ header {
 
   nav {
     // margin-left: 50px;
-    margin-left: 20px;
+    margin: 0 30px 0 auto;
+    .nav__item {
+      border-bottom: 1px solid transparent;
+      padding-bottom: 0.3rem;
+    }
+    .burger,
+    .nav__item {
+      cursor: pointer;
+      transition: all 250ms linear;
+    }
+    .burger:hover {
+      transition: all 250ms linear;
+      opacity: 0.7;
+    }
+    .nav__item:hover {
+      transition: all 250ms linear;
+      color: $real-white;
+      border-bottom: 1px solid $real-white;
+    }
   }
 
   .header__nav {
@@ -25,5 +48,26 @@ header {
     background-image: url("../../assets/icons/toggle-mock.png");
     background-repeat: no-repeat;
     background-size: contain;
+  }
+}
+
+@media (min-width: 639px) {
+  header {
+    nav {
+      margin: auto;
+      .burger {
+        display: none;
+      }
+
+      .header__nav {
+        display: flex;
+        margin: auto;
+        width: 45vw;
+        max-width: 41rem;
+
+        list-style: none;
+        justify-content: space-between;
+      }
+    }
   }
 }

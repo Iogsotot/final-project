@@ -1,1 +1,1 @@
-export { API_BASE_URL } from './constants';
+export { API_BASE_URL, MAX_IMGS_COUNT } from './constants';
