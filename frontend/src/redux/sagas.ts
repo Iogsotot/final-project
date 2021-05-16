@@ -72,7 +72,7 @@ function* fetchMoreUserPokemons() {
   const pokemonsPerPage = 12;
   console.log(userPokemons);
 
-  if (userPokemons.length > page / pokemonsPerPage) {
+  if (page < (userPokemons.length / pokemonsPerPage)) {
     updatedPage += 1;
   }
 
@@ -117,26 +117,24 @@ function* fetchUserPokemons() {
   }
 }
 
-function* catchPokemons(payload: any) {
+function* catchPokemons(action: any) {
   const { userId, userPokemons } = yield select(store => store.userPokemonList);
   const fetchPokemonsUrl =
     'http://localhost:7001/users_monsters/';
 
-  const updatedUserPokemons = { ...userPokemons };
+  const updatedUserPokemons = [...userPokemons];
+  console.log(action);
 
   try {
-    const body = payload.payload;
+    const body = action.payload;
     const response: Pokemon[] = yield call(postJson, fetchPokemonsUrl, body);
     // проверить, что запрос ушёл и всё ок
     updatedUserPokemons.push(body);
-    console.log(body);
-
-    // изменить состояние покемона в store
     yield put({
       type: UserPokemonListActionTypes.CATCH_POKEMONS_OK, payload: body,
     });
-    // просто позову другую сагу
   } catch (err) {
+    // console.error(err);
     yield put({
       type: UserPokemonListActionTypes.CATCH_POKEMONS_FAILED, payload: err,
     });

@@ -54,7 +54,7 @@ export const userPokemonListReducer = (
       return { ...state, error: action.payload };
 
     case CATCH_POKEMONS_OK:
-      return { ...state, userPokemons: action.payload };
+      return { ...state, userPokemons: [...state.userPokemons, action.payload] };
 
     default:
       return state;

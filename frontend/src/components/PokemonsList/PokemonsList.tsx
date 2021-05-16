@@ -51,39 +51,34 @@ const PokemonsList: FC<{ filter?: boolean | string }> = ({ filter }) => {
     );
   }
 
-  const FilteredPokemons: FC = () => {
-    return (
-      <>
-        {!loading ? (filteredPokemons.map(
-          (pokemon: UserPokemon) => {
-            const pokemonProps = { ...pokemon.monster, caughtDate: pokemon.caughtDate };
-            return <PokemonCard key={pokemon.id} {...pokemonProps} />;
-          },
-        )) : (<Spinner />)
-        }
-      </>
-    );
-  };
-
-  const NonFilteredPokemons: FC = () => {
-    return (
-      <>
-        {!loading ? (pokemons.map(
-          (pokemon:Pokemon) => {
-            const pokemonProps = { ...pokemon };
-            if (userPokemons) {
-              const result = userPokemons.find((userPokemon:UserPokemon) => userPokemon.monsterId === pokemon.id);
-              if (result) {
-                pokemonProps.caughtDate = result.caughtDate;
-              }
+  let preparedPokemons;
+  if (filter) {
+    preparedPokemons = <>
+      {!loading ? (filteredPokemons.map(
+        (pokemon: UserPokemon) => {
+          const pokemonProps = { ...pokemon.monster, caughtDate: pokemon.caughtDate };
+          return <PokemonCard key={pokemon.id} {...pokemonProps} />;
+        },
+      )) : (<Spinner />)
+      }
+    </>;
+  } else {
+    preparedPokemons = <>
+      {!loading ? (pokemons.map(
+        (pokemon:Pokemon) => {
+          const pokemonProps = { ...pokemon };
+          if (userPokemons) {
+            const result = userPokemons.find((userPokemon:UserPokemon) => userPokemon.monsterId === pokemon.id);
+            if (result) {
+              pokemonProps.caughtDate = result.caughtDate;
             }
-            return <PokemonCard key={pokemon.id} {...pokemonProps} />;
-          },
-        )) : (<Spinner />)
-        }
-      </>
-    );
-  };
+          }
+          return <PokemonCard key={pokemon.id} {...pokemonProps} />;
+        },
+      )) : (<Spinner />)
+      }
+    </>;
+  }
 
   const pokemonListTitle = filter ? 'MyPokemons' : 'Pokemons';
   const pokemonsListAction = filter ? fetchMoreUserPokemons : fetchMorePokemons;
@@ -92,8 +87,7 @@ const PokemonsList: FC<{ filter?: boolean | string }> = ({ filter }) => {
       <div className="wrapper">
         <h2 className="title">{pokemonListTitle}</h2>
         <div className="cards-list">
-          {!filter ? <NonFilteredPokemons/> : <FilteredPokemons/>
-          }
+          {preparedPokemons}
         </div>
 
         <button onClick={() => dispatch(pokemonsListAction())} className='btn btn--more'>Load more</button>
