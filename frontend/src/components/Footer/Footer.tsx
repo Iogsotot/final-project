@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { Link } from 'react-router-dom';
 import logo from '../../assets/logo.png';
 import './footer.scss';
 
@@ -16,8 +17,8 @@ const Footer: FC = () => (
 
         <nav>
           <ul className='footer__nav'>
-            <li className="nav__item">Home</li>
-            <li className="nav__item">My Collection</li>
+            <Link to='/' className="nav__item">Home</Link>
+            <Link to='myPokemons' className="nav__item">My Collection</Link>
           </ul>
         </nav>
       </div>

@@ -4,6 +4,7 @@ import MainPage from './components/MainPage';
 import MyPokemons from './components/MyPokemons';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import CurrPokemon from './components/CurrPokemon';
 
 export const Router: FC = () => (
   <BrowserRouter>
@@ -15,6 +16,15 @@ export const Router: FC = () => (
 
       <Route path='/myPokemons' exact>
         <MyPokemons/>
+      </Route>
+
+      <Route
+        path='/pokemon/:id'
+        component={CurrPokemon}
+        exact
+        // render={props => <PokemonCard {...props} />}
+      >
+        <CurrPokemon/>
       </Route>
 
       <Redirect to="/" />
