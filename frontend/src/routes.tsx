@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import MainPage from './components/MainPage';
 import MyPokemons from './components/MyPokemons';

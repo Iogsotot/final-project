@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 import './promo.scss';
 
 const Promo: FC = () => {

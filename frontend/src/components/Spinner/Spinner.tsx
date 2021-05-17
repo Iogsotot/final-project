@@ -1,5 +1,5 @@
 import './spinner.scss';
-import { FC } from 'react';
+import React, { FC } from 'react';
 
 const Spinner: FC = () => (
   <div className="spinner">

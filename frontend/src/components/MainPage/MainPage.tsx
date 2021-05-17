@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 import Promo from '../Promo';
 import AppDescription from '../AppDescription';
 import Gallery from '../Gallery';

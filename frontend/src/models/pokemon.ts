@@ -1,4 +1,4 @@
-import { Dispatch } from 'react';
+import React, { Dispatch } from 'react';
 
 export interface IPokemon {
   id?: number,

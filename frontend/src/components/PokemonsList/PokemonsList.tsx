@@ -1,8 +1,7 @@
 /* eslint-disable arrow-body-style */
 // this rule is disabled to improve the readability of the code
-import { FC, useEffect } from 'react';
+import React, { FC, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import {
   fetchMorePokemons,

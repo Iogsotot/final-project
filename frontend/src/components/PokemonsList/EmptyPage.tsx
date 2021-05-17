@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 
 const EmptyPage: FC = () => (
   <div className="empty__page">
