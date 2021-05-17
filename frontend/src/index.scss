@@ -71,6 +71,20 @@ a {
   color: $basic-white-color;
 }
 
+@media (min-width: 639px) {
+  .title {
+    font-size: 64px;
+    line-height: 75px;
+  }
+}
+
+@media (min-width: 1199px) {
+  .title {
+    font-size: 89px;
+    line-height: 104px;
+  }
+}
+
 .logo-group {
   color: $basic-white-color;
   font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
