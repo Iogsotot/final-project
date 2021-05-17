@@ -20,13 +20,13 @@ const Header: FC = () => {
   return (
     <header>
       <div className="wrapper">
-        <div className="logo-group">
+        <Link to='/' className="logo-group">
           <div className="logo__title">POKE</div>
           <div className="logo__subtitle">
               hunt
             <img src='/imgs/logo.png' alt="" className='logo__img' />
           </div>
-        </div>
+        </Link>
 
         <nav>
           <div className="burger__nav">

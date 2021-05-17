@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import './promo.scss';
+import { MAX_IMGS_COUNT as maxPokemonsCount } from '../../constants/constants';
 
 const Promo: FC = () => {
-  const maxPokemonsCount = 720;
   const getRandomPokemons = (variants = 1) => {
     const galleryList = [];
     while (galleryList.length < variants) {
@@ -18,7 +18,7 @@ const Promo: FC = () => {
         <h1 className="title">
         Find and collect all pokemons!
         </h1>
-        <a href="/auth" className='btn'>Login</a>
+        {/* <a href="/auth" className='btn'>Login</a> */}
         <div className="gallery">
           <img src={`./pokemons/${getRandomPokemons()}.png`} alt="" />
         </div>
