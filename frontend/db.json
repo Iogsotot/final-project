@@ -3816,43 +3816,8 @@
       "monsterId": 1,
       "name": "bulbasaur",
       "userId": 1,
-      "caughtDate": "2021-05-16T07:40:26.104Z",
-      "id": 2
-    },
-    {
-      "monsterId": 2,
-      "name": "ivysaur",
-      "userId": 1,
-      "caughtDate": "2021-05-16T16:32:49.177Z",
-      "id": 3
-    },
-    {
-      "monsterId": 6,
-      "name": "charizard",
-      "userId": 1,
-      "caughtDate": "2021-05-16T16:32:56.019Z",
-      "id": 4
-    },
-    {
-      "monsterId": 31,
-      "name": "nidoqueen",
-      "userId": 1,
-      "caughtDate": "2021-05-16T16:33:10.356Z",
-      "id": 5
-    },
-    {
-      "monsterId": 34,
-      "name": "nidoking",
-      "userId": 1,
-      "caughtDate": "2021-05-16T16:33:13.026Z",
-      "id": 6
-    },
-    {
-      "monsterId": 3,
-      "name": "venusaur",
-      "userId": 1,
-      "caughtDate": "2021-05-16T16:34:37.494Z",
-      "id": 7
+      "caughtDate": "2021-05-17T09:24:38.212Z",
+      "id": 1
     }
   ]
 }

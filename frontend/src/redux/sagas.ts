@@ -1,11 +1,11 @@
-import { call, put, select, takeLatest, takeEvery, take } from 'redux-saga/effects';
+import { call, put, select, takeLatest, takeEvery } from 'redux-saga/effects';
 import {
-  FetchPokemonListAction,
   Pokemon,
   PokemonListActionTypes,
   UserPokemonListActionTypes,
-  UserPokemon,
 } from '../models';
+
+import { IBody } from './types';
 
 function getJson(uri: string) {
   return fetch(uri, {
@@ -16,7 +16,7 @@ function getJson(uri: string) {
   }).then(data => data.json());
 }
 
-function postJson(uri: string, body: any) {
+function postJson(uri: string, body: IBody) {
   return fetch(uri, {
     method: 'POST',
     headers: {
@@ -37,7 +37,6 @@ function* fetchMorePokemons() {
 
     const newArr = pokemons.concat(response);
     response = newArr;
-    console.log(newArr);
 
     yield put({
       type: PokemonListActionTypes.FETCH_POKEMONS_OK, payload: response,
@@ -70,7 +69,6 @@ function* fetchMoreUserPokemons() {
 
   let updatedPage = page;
   const pokemonsPerPage = 12;
-  console.log(userPokemons);
 
   if (page < (userPokemons.length / pokemonsPerPage)) {
     updatedPage += 1;
@@ -118,7 +116,7 @@ function* fetchUserPokemons() {
 }
 
 function* catchPokemons(action: any) {
-  const { userId, userPokemons } = yield select(store => store.userPokemonList);
+  const { userPokemons } = yield select(store => store.userPokemonList);
   const fetchPokemonsUrl =
     'http://localhost:7001/users_monsters/';
 
