@@ -10,5 +10,5 @@
 6) ```npm install -g json-server```
 7) ```json-server --watch db.json --port 7001```
 8) open first terminal
-9) open Application
+9) open browser console and run command `localStorage.clear()`
 10) ```npm run start```
