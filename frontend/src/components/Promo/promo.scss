@@ -1,0 +1,22 @@
+@import "../../variables.scss";
+
+.promo {
+  background: url("../../assets/imgs/promo_bg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 9rem 1rem;
+
+  .gallery {
+    img {
+      display: block;
+      margin: auto;
+      width: auto;
+      height: 20.2rem;
+    }
+  }
+
+  .btn {
+    display: inline-block;
+    margin: 1.5rem auto 3.5rem;
+  }
+}

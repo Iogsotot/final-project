@@ -10,7 +10,12 @@ module.exports = {
       {
         test: /\.(js|jsx|ts|tsx)$/,
         exclude: /node_modules/,
-        use: ['babel-loader']
+        loader: "ts-loader",
+        // use: ['babel-loader']
+        options: {
+          // disable type checker - we will use it in fork plugin
+          transpileOnly: true
+        }
       },
       
       {
@@ -19,6 +24,7 @@ module.exports = {
       },
       {
         test: /\.(woff|woff2|eot|ttf|svg|jpg|png)$/,
+        type: "asset",
         use: {
           loader: 'url-loader',
         },
@@ -27,7 +33,7 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['*', '.js', '.tsx', 'ts'],
+    extensions: ['.tsx', '.ts', '.js'],
   },
   plugins: [new MiniCssExtractPlugin()],
   output: {

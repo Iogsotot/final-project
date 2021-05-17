@@ -1,0 +1,39 @@
+@import "./../../variables";
+
+footer {
+  color: $basic-white-color;
+  padding: 1.5rem;
+  .footer__nav {
+    display: flex;
+    flex-direction: column;
+    margin-top: 0.6rem;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    list-style: none;
+
+    .nav__item {
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid transparent;
+      width: max-content;
+
+      &:hover {
+        transition: all 250ms linear;
+        color: $real-white;
+        border-bottom: 1px solid $real-white;
+      }
+    }
+  }
+  .line {
+    width: inherit;
+    margin: 0 0 1.5rem 0;
+    border-top: 1px solid $grey-color;
+  }
+  .copyright {
+    color: $grey-color;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 14px;
+  }
+}
