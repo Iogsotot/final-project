@@ -1,19 +1,16 @@
 import React, { FC, useState } from 'react';
 import { Link } from 'react-router-dom';
-import logo from '../../assets/logo.png';
-import burger from '../../assets/icons/burger.png';
-import close from '../../assets/icons/close.png';
 import './header.scss';
 
 const Header: FC = () => {
   const [isBurgerOpen, setIsBurgerOpen] = useState(false);
-  let burgerImg = burger;
+  let burgerImg = '/imgs/icons/burger.png';
   const burgerNav = {
     display: 'none',
   };
 
   if (isBurgerOpen) {
-    burgerImg = close;
+    burgerImg = '/imgs/icons/close.png';
     burgerNav.display = 'flex';
     console.log(isBurgerOpen);
   }
@@ -27,7 +24,7 @@ const Header: FC = () => {
           <div className="logo__title">POKE</div>
           <div className="logo__subtitle">
               hunt
-            <img src={logo} alt="" className='logo__img' />
+            <img src='/imgs/logo.png' alt="" className='logo__img' />
           </div>
         </div>
 

@@ -2,8 +2,8 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
-  // mode: "development",
-  mode: "production",
+  mode: "development",
+  // mode: "production",
   entry: path.resolve(__dirname, './src/index.tsx'),
   devtool: "source-map",
   module: {
@@ -23,10 +23,7 @@ module.exports = {
       },
       {
         test: /\.(woff|woff2|eot|ttf|svg|jpg|png)$/,
-        type: "asset",
-        use: {
-          loader: 'url-loader',
-        },
+        type: "asset/resource",
       },
       
     ]

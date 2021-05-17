@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
-import logo from '../../assets/logo.png';
 import './footer.scss';
 
 const Footer: FC = () => (
@@ -11,7 +10,7 @@ const Footer: FC = () => (
           <div className="logo__title">POKE</div>
           <div className="logo__subtitle">
               hunt
-            <img src={logo} alt="" className='logo__img'/>
+            <img src='/imgs/logo.png' alt="" className='logo__img'/>
           </div>
         </div>
 
