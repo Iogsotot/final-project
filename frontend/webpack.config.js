@@ -2,6 +2,7 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
+  // mode: "development",
   mode: "production",
   entry: path.resolve(__dirname, './src/index.tsx'),
   devtool: "source-map",
@@ -11,9 +12,7 @@ module.exports = {
         test: /\.(js|jsx|ts|tsx)$/,
         exclude: /node_modules/,
         loader: "ts-loader",
-        // use: ['babel-loader']
         options: {
-          // disable type checker - we will use it in fork plugin
           transpileOnly: true
         }
       },
